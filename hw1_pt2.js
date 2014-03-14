@@ -15,7 +15,15 @@ var fibonacci2 = function(n) {
     return Math.round((Math.pow(phi, n) - Math.pow(1-phi, n))/Math.sqrt(5));
 };
 
-// Find first K Fibonacci numbers via basic for loopvar firstkfib = function(k) {
+var isprime = function(n) {
+    var i = 2;
+    while( n % i != 0 ) {
+        i++;
+    }
+    return n == i;
+};
+
+// Find first K Fibonacci numbers via basic for loop.
 var firstkfib = function(k) {
     var i = 1;
     var arr = [];
@@ -25,16 +33,35 @@ var firstkfib = function(k) {
     return arr;
 };
 
-// Print to console & output file
-var fmt = function(arr) {
-     return arr.join(", ");
+// Find first k Prime numbers via basic for loop.
+var firstkprime = function(k) {
+    var i = 2;
+    var arr = [];
+    do {
+        if ( isprime(i)) {
+            arr.push(i);
+        }
+        i++;
+    } while ( arr.length < k );
+    return arr;
 };
 
-var k = 10;
+// Print to console & output file
+var fmt = function(arr) {
+    
+    
+    return arr.join(", ");
+};
+
+var k = 100;
 var fs = require('fs');
 var outfile = "hw1_pt2.txt";
-var out = fmt(firstkfib(k));
+
+// Choose to exercise either the Fibonacci function or Prime numeber function.
+//var out = fmt(firstkfib(k));
+var out = fmt(firstkprime(k));
+
 fs.writeFileSync(outfile, out + "\n");
-console.log("Script: " + __filename + "\nWrote first " + k + " Fibonacci numbers: " + "(" + out  + ") " + "To: " + outfile);
 
-
+//console.log("Script: " + __filename + "\nWrote first " + k + " Fibonacci numbers: " + "(" + out  + ") " + "To: " + outfile);
+console.log("Script: " + __filename + "\nWrote first " + k + " Prime numbers: " + "(" + out  + ") " + "To: " + outfile);
