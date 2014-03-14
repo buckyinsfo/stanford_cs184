@@ -50,7 +50,7 @@ var firstkprime = function(k) {
 var fmt = function(arr) {
     
     
-    return arr.join(", ");
+    return arr.join(",");
 };
 
 var k = 100;
